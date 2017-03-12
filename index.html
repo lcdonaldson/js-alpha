@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <!-- <script src="js/main.js"></script> -->
+    <script src="js/canvas.js"></script>
+    <script src="js/sprite.js"></script>
+    <script src="js/world.js"></script>
+    <script language="javascript">
+        var Context = null;
+        var BLOCK_W = 32;
+        var BLOCK_H = 32;
+
+        var wall = new Sprite('images/wall.png');
+        var water = new Sprite('images/water.png');
+
+        $(document).ready(function () {
+            Context = new HTML("game", 640, 480); 
+        });
+
+        $(window).on("load", function () {
+            for (var y = 0; y < 10; y++) 
+            {
+                for (var x = 0; x < 10; x++) 
+                {
+                    var tile_x = x * BLOCK_W;
+                    var tile_y = y * BLOCK_H;
+
+                    if (Math.floor(Math.random()*2) == 0)
+                        wall.draw(tile_x, tile_y);
+                    else
+                        water.draw(tile_x, tile_y);
+
+                }
+                
+            }
+
+            wall.draw(0, 0);
+            water.draw(32, 0)
+        });
+    </script>
+</head>
+<body>
+    <canvas id="game"></canvas>
+</body>
+</html>
