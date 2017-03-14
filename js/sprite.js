@@ -8,6 +8,10 @@ var Sprite = function(fn) {
     this.load = function(filename) { this.image = new Image(); this.image.src = filename; return this; };
     this.to_pattern = function(x_times) { this.pattern_x_times = x_times; this.pattern = Context.context.createPattern(this.image, 'repeat'); this.is_pattern = true; };
 
+    this.animationDelay = 0;
+    this.animationIndexCounter = 0;
+    this.animationCurrentFrame = 0;
+
     // Load from sprite
     if (fn != undefined && fn != "" && fn != null)
     {
@@ -23,6 +27,24 @@ var Sprite = function(fn) {
     this.drawOldVersion = function(x, y) {
         Context.context.drawImage(this.image, x, y, BLOCK_W, BLOCK_H);
     };
+
+    // animated sprites
+    this.drawAnimated = function (x, y, spriteSheetIndex) {
+        if (this.animationDelay++ >= 3) {
+            this.animationDelay = 0;
+            this.animationIndexCounter++;
+
+            if (this.animationIndexCounter >= spriteSheetIndex.length)
+                this.animationIndexCounter = 0;
+            this.animationCurrentFrame = spriteSheetIndex[this.animationIndexCounter];
+        }
+
+        var res = i2xy(this.animationCurrentFrame, 8);
+
+        Context.context.drawImage(this.image, res[0]*32, res[1]*32, 32, 32, x, y, 32, 32);
+
+    };
+
 
     this.draw = function(x, y, various)
     {

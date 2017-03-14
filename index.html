@@ -5,7 +5,8 @@
     <title>Document</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-    <!-- <script src="js/main.js"></script> -->
+    <script src="js/keyboard.js"></script>
+    <script src="js/utility.js"></script>
     <script src="js/canvas.js"></script>
     <script src="js/sprite.js"></script>
     <script src="js/world.js"></script>
@@ -14,33 +15,56 @@
         var BLOCK_W = 32;
         var BLOCK_H = 32;
 
-        var wall = new Sprite('images/wall.png');
+        var wolf_x = 128;
+        var wolf_y = 128;
+
+        var dirt = new Sprite('images/dirt2.png');
         var water = new Sprite('images/water.png');
+        var wolf = new Sprite('images/dog-sprite-sheet.png');
+
+        var map = [ 0,0,0,0,0,0,0,0,0,0,
+                    0,1,1,0,0,1,0,0,1,0,
+                    0,0,1,1,1,1,1,1,1,0,
+                    0,0,0,1,0,1,0,1,1,0,
+                    0,1,1,0,0,0,0,1,0,0,
+                    0,0,1,0,1,0,0,0,0,0,
+                    0,0,1,1,1,1,0,1,0,0,
+                    0,0,1,0,1,1,1,1,1,0,
+                    0,1,1,0,0,1,0,1,0,0,
+                    0,0,0,0,0,0,0,0,0,0 ];
+
 
         $(document).ready(function () {
+
             Context = new HTML("game", 640, 480); 
+
+            InitializeKeyboard();
+            DisableScrollbars();
+
+        });
+
+        $("body").keyup(function (event) {
+            console.log("event.keyCode=" + event.keyCode);
         });
 
         $(window).on("load", function () {
-            for (var y = 0; y < 10; y++) 
-            {
-                for (var x = 0; x < 10; x++) 
-                {
-                    var tile_x = x * BLOCK_W;
-                    var tile_y = y * BLOCK_H;
-
-                    if (Math.floor(Math.random()*2) == 0)
-                        wall.draw(tile_x, tile_y);
-                    else
-                        water.draw(tile_x, tile_y);
-
-                }
-
-            }
-
-            wall.draw(0, 0);
-            water.draw(32, 0);
+            
         });
+
+        setInterval(function () {
+            DrawMap();
+
+            // left, right, up, down
+            if (key.left) {wolf_x -= 1;}
+            if (key.right) {wolf_x += 1;}
+            if (key.up) {wolf_y -= 1;}
+            if (key.down) {wolf_y += 1;}
+
+            // Sprite characters
+            wolf.drawAnimated(wolf_x, wolf_y, [1,2,3,4]);
+
+        }, 12);
+
     </script>
 </head>
 <body>
