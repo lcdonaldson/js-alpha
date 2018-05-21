@@ -33,6 +33,8 @@ const Teradune = {
 
     // Stage Bosses
 
+const Aexe = {}
+
 const Oronial = {}
 
 const Sparkaoth = {}
