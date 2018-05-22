@@ -48,3 +48,5 @@ const Loam = {}
     // Minions
 
 const Primo = {}
+
+const Ghul = {}
