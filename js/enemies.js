@@ -50,3 +50,5 @@ const Loam = {}
 const Primo = {}
 
 const Ghul = {}
+
+const Terat = {}
