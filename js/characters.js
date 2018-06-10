@@ -1,3 +1,7 @@
 const Askari = {
 
 }
+
+const Jadyn = {
+
+}
