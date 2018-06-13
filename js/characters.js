@@ -9,3 +9,7 @@ const Jadyn = {
 const Balor = {
 
 }
+
+const Mayryn = {
+
+}
