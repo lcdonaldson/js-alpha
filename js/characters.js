@@ -2,14 +2,14 @@ const Askari = {
 
 }
 
-const Jadyn = {
+// const Jadyn = {
 
-}
+// }
 
-const Balor = {
+// const Balor = {
 
-}
+// }
 
-const Mayryn = {
+// const Mayryn = {
 
-}
+// }
