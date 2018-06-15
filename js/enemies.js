@@ -1,5 +1,4 @@
-
-    // End Level Bosses
+// End Level Bosses
 
 // ash boss
 const Arandul = {
